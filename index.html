@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ISABEL MUSIC</title>
+        <meta name="description" content="An interactive getting started guide for Brackets.">
+        <link rel="stylesheet" href="main.css">
+        <script src="main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+            //TODO: structurise this.
+            $(document).ready(function(){
+                $("#isabel").delay(800).fadeIn(2500);
+                $("nav a").click(function(){
+                    var currLink = $(this).index();
+                    var parentId = $(this).closest("nav").attr("id");
+                    if ((parentId === "nav2") && (currLink == 0)) {
+                        $('body, html').animate({scrollTop: 0}, 500);
+                    } else {     
+                        var slideNo = ((parentId === "nav2") ? '' + (currLink) : '' + (currLink + 1));
+                        var scrollVal = $('#slides div.slide:nth-child(' + slideNo + ')').offset().top;
+                        scrollVal -= 35;
+                        $('body, html').animate({scrollTop: scrollVal}, 500);
+                    }
+                });
+                $("#nav2").hide();
+                $(document).scroll(function(){
+                    if ($(this).scrollTop() > 100) {
+                        $("#nav1").fadeOut(800);
+                        $("#nav2").fadeIn(800);
+                    } else {
+                        $("#nav1").fadeIn(800); 
+                        $("#nav2").fadeOut(800);
+                    }
+                });
+                $(".social-logos img, .footer-logos img")
+                    .mouseover(function(){
+                        var newSrcName = $(this).attr("src").split('.')[0] + "-ro" + ".png";
+                        $(this).attr("src", newSrcName); 
+                    })
+                    .mouseout(function(){
+                        var oldSrcName = $(this).attr("src").replace("-ro.png", ".png");
+                        $(this).attr("src", oldSrcName);
+                });
+                $(".photo-buts-ctn").click(function(){
+                    var scrollVal = $('#slides div:nth-child(' + 5 + ')').offset().top;
+                    scrollVal -= 35;
+                    $('body, html').animate({scrollTop: scrollVal}, 500);
+                    var imgSrcUrl = $(this).css("background-image");
+                    var strArray = imgSrcUrl.split('/');
+                    var fileName = strArray[4].split(')');
+                    var imgSrc = strArray[3] + '/' + fileName[0];
+                    $("#photo-viewer img").attr("src", imgSrc);
+                    $("#photo-viewer").fadeIn(800);
+                    $("#viewer-bg").fadeIn(800);
+                    $("#close-but").click(function(){
+                        $("#photo-viewer").fadeOut(800);
+                        $("#viewer-bg").fadeOut(800);
+                    });
+                });
+                
+            });
+        </script>
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div id="cover-logos" class="social-logos">
+            <a href="https://www.facebook.com/IsabelSMusic" target="_blank"><img src="img/logo-fb.png"></a>
+            <a href="https://soundcloud.com/isabelsmusic" target="_blank"><img src="img/logo-sc.png"></a>
+            <a href="https://www.triplejunearthed.com/artist/isabel-s" target="_blank"><img src="img/logo-tj.png"></a>
+            <a href="https://www.youtube.com/channel/UCl0MZBU8dwCJApFFjx4aW1w" target="_blank"><img src="img/logo-yt.png"></a>
+            <a href="https://instagram.com/izzzystewart/" target="_blank"><img src="img/logo-ig.png"></a>
+            <a href="https://isabelsmusic.bandcamp.com/" target="_blank"><img src="img/logo-bc.png"></a>
+        </div>
+
+        <div id="cover">
+            <img id="isabel" src="img/isabel-1a.png">
+
+            <nav id="nav1">
+                <a>About</a>
+                <a>Contact</a>
+                <a>Music</a>
+                <a>Gigs</a>
+                <a>Photos</a>
+                <a>Videos</a>
+                <a>News</a>
+            </nav>
+            <nav id="nav2">
+                <a>Home</a>
+                <a>About</a>
+                <a>Contact</a>
+                <a>Music</a>
+                <a>Gigs</a>
+                <a>Photos</a>
+                <a>Videos</a>
+                <a>News</a>
+            </nav>
+        </div>
+        <div id="slides">
+            <div class="slide">
+                <h1 class="title">About</h1>
+                <img id="about-img" src="img/photo2.jpg">
+                <article id="about">
+                    <p>Isabel is an up and coming Brisbane-based songstress of soul, folk and jazz. The singer-songwriter's music has already featured locally, having supported Brisbane powerhouses like Jackie Marshal, Astrid and The Asteroids and O Little Sister. Her sultry sounds and mellow melodies have captured and captivated audiences and reviewers alike, with AU Review praising the 'untamed soul woman’.</p>
+
+                    <p>2015 is set to bring new original material from the 21 year old. With her songs ‘Cinnamon’ and ‘Don’t Care’, many have described her sound as passionate and evocative, taking inspiration from her jazz and soul roots. She is inspired by artists such as Meg Mac, Sara Bareilles, Ella Fitzgerald and Megan Washington.</p> 
+
+                    <p>Isabel’s musical career had started in 2012 where she headlined alongside Astrid and the Asteroids and Lyre. In 2013, she supported the Astrid and the Asteroids Autopsy launch alongside Hailey Calvert which received a glowing review: “Opening the night was Astrid’s self-proclaimed “prodigal vocal student” Isabel. She picked up her Electric guitar, and together with her bass guitar playing friend they played a set of mellow melodies. Let me tell you, there’s an untamed soul woman behind her reserved demeanor. Her vocal style reminds me so much of Sara Bareilles in many ways. There are inflections that just captivate you into listening.”</p>
+
+                    <p>She has also played a number of venues across the Brisbane region, including Dowse Bar, The Hideaway and Black Bear Lodge. She can also be found performing at local markets around Brisbane and has more live performances in store throughout the year.</p>
+                </article>
+            </div>
+            <div class="slide">
+                <h1 class="title">Contact</h1>
+                        <div id="contact-logos" class="social-logos">
+            <a href="https://www.facebook.com/IsabelSMusic" target="_blank"><img src="img/logo-fb.png"></a>
+            <a href="https://soundcloud.com/isabelsmusic" target="_blank"><img src="img/logo-sc.png"></a>
+            <a href="https://www.triplejunearthed.com/artist/isabel-s" target="_blank"><img src="img/logo-tj.png"></a>
+            <a href="https://www.youtube.com/channel/UCl0MZBU8dwCJApFFjx4aW1w" target="_blank"><img src="img/logo-yt.png"></a>
+            <a href="https://instagram.com/izzzystewart/" target="_blank"><img src="img/logo-ig.png"></a>
+            <a href="https://isabelsmusic.bandcamp.com/" target="_blank"><img src="img/logo-bc.png"></a>
+        </div>
+                <article><p></p></article>
+                <form action="contact_form.php" method="POST">
+                    <input type="text" name="name" placeholder="Name *" required>
+                    <input type="email" name="email" placeholder="Email *" required>
+                    <input type="text" name="subject" placeholder="Subject"><br>
+                    <textarea name="message" placeholder="Message *" required></textarea><br>
+                    <input class="btn" id="form-submit" type="submit" value="Send">
+                </form>
+            </div>
+            <div class="slide">
+                <h1 class="title">Music</h1><br>
+                <iframe class="music-widget" width="48%" height="350" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/22008126&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+                <iframe class="music-widget" style="border: 0; width: 48%; height: 350px;" src="https://bandcamp.com/EmbeddedPlayer/track=540287370/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="http://isabelsmusic.bandcamp.com/track/cinnamon">Cinnamon by Isabel</a></iframe><br>
+                <a href="https://isabelsmusic.bandcamp.com/" target="_blank" class="btn">Buy from BandCamp</a>
+            </div>
+            <div class="slide">
+                <h1 class="title">Gigs</h1>
+                <table class="gig-table">
+                    <tr>
+                        <td class="gig-date">Aug 28</td>
+                        <td class="gig-time">2:00 - 3:00pm</td>
+                        <td class="gig-venue">City Sounds - Queen St Mall</td>
+                    </tr>
+                    <tr>
+                        <td class="gig-date">Sep 18</td>
+                        <td class="gig-time">5:00 - 5:45pm</td>
+                        <td class="gig-venue">Front Yard Music - South Bank</td>
+                    </tr>
+                </table>
+                <script type='text/javascript' src='http://widget.bandsintown.com/javascripts/bit_widget.js'></script><a href="http://www.bandsintown.com/Isabel" class="bit-widget-initializer" data-artist="Isabel">Isabel Tour Dates</a>
+            </div>
+            <div class="slide">
+                <h1 class="title">Photos</h1>
+                <div class="photo-buts">
+                    <div class="photo-buts-ctn" style="background-image: url('img/is-1.jpg');"></div>
+                    <div class="photo-buts-ctn" style="background-image: url('img/is-2.jpg');"></div>
+                    <div class="photo-buts-ctn" style="background-image: url('img/is-4.jpg');"></div>
+                    <div class="photo-buts-ctn" style="background-image: url('img/is-5.jpg');"></div>
+                    <div class="photo-buts-ctn" style="background-image: url('img/is-6.jpg');"></div>
+                    <div class="photo-buts-ctn" style="background-image: url('img/is-7.jpg');"></div>
+                    <p>Promotional photos by <a class="text-link" href="http://www.markusravik.com.au/" target="_blank">Markus Ravik Photography</a></p>
+                </div>
+
+                <div id="viewer-bg">
+                </div>
+                <div id="photo-viewer">
+                    <p id="close-but" class="btn">Click to close</p>
+                    <img src="img/mr-1.jpg">
+                </div>
+                
+            </div>
+            <div class="slide">
+                <h1 class="title">Videos</h1>
+                <article>
+                    <div id="video-ctn">
+                        <iframe id="video" src="https://www.youtube.com/embed/htr28nDKCSw" frameborder="0" allowfullscreen></iframe><br>                                  
+                        <a href="https://www.youtube.com/channel/UCl0MZBU8dwCJApFFjx4aW1w" target="_blank" class="btn">More videos</a>
+                    </div>
+
+                </article>
+
+            </div>
+            <div class="slide">
+                <h1 class="title">News</h1><br>
+                <table class="news-table">
+                    <tr>
+                        <td><h2>Facebook</h2></td>
+                        <td><h2>Instagram</h2></td>
+                    </tr>
+                    <tr>
+                        <td><div class="fb-page" data-href="https://www.facebook.com/isabelsmusic" data-width="500" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/isabelsmusic"><a href="https://www.facebook.com/isabelsmusic">Isabel</a></blockquote></div></div></td>
+                        <td><!-- INSTANSIVE WIDGET --><script src="//instansive.com/widget/js/instansive.js"></script><iframe src="//instansive.com/widgets/78344bf5032ad06a5a768e348703af8df85735a2.html" id="instansive_78344bf503" name="instansive_78344bf503"  scrolling="no" allowtransparency="true" class="instansive-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe></td>
+                    </tr>
+                </table>   
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <footer>
+                   <div class="footer-logos">
+            <a href="https://www.facebook.com/IsabelSMusic" target="_blank"><img src="img/logo-fb.png"></a>
+            <a href="https://soundcloud.com/isabelsmusic" target="_blank"><img src="img/logo-sc.png"></a>
+            <a href="https://www.triplejunearthed.com/artist/isabel-s" target="_blank"><img src="img/logo-tj.png"></a>
+            <a href="https://www.youtube.com/channel/UCl0MZBU8dwCJApFFjx4aW1w" target="_blank"><img src="img/logo-yt.png"></a>
+            <a href="https://instagram.com/izzzystewart/" target="_blank"><img src="img/logo-ig.png"></a>
+            <a href="https://isabelsmusic.bandcamp.com/" target="_blank"><img src="img/logo-bc.png"></a>
+        </div> 
+        </footer>
+    </body>
+    
+</html>
